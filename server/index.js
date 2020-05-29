@@ -17,5 +17,6 @@ massive ({
 
 // Controller Endpoints
 app.get ('/api/inventory', ctrl.getInventory)
+app.post ('/api/product', ctrl.createProduct)
 
-app.listen(SERVER_PORT, () => console.log (`Rocking your skills check on port ${SERVER_PORT}`))
+app.listen (SERVER_PORT, () => console.log (`Rocking your skills check on port ${SERVER_PORT}`))

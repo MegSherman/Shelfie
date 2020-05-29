@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import './App.css';
 import Header from './components/Header/Header';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -10,28 +11,44 @@ class App extends Component {
     this.state = {
       inventory: [
         {
-          imageURL: 'https://images-na.ssl-images-amazon.com/images/I/91KNwuvtHyL._AC_SL1500_.jpg',
-          productName: 'leather journal',
-          price: 30
+          name: 'leather journal',
+          price: 30,
+          img: 'https://images-na.ssl-images-amazon.com/images/I/91KNwuvtHyL._AC_SL1500_.jpg'
         },
         {
-          imageURL: 'https://shop.r10s.jp/hunnyhunt/cabinet/sailor/s117new_2.jpg',
-          productName: 'fountain pen',
-          price: 25
+          name: 'fountain pen',
+          price: 25,
+          img: 'https://shop.r10s.jp/hunnyhunt/cabinet/sailor/s117new_2.jpg'
         },
         {
-          imageURL: 'https://cdn.shopify.com/s/files/1/0130/8502/products/clm39_600x.jpg?v=1571438566',
-          productName: 'inkwell',
-          price: 15
-        },
-    ]
+          name: 'inkwell',
+          price: 15,
+          img: 'https://cdn.shopify.com/s/files/1/0130/8502/products/clm39_600x.jpg?v=1571438566'
+        }
+      ]
     }
+    this.getInventory = this.getInventory.bind(this)
   }
+  
+  // componentDidMount () {
+  //   this.getIventory ()
+  // }
+
+  getInventory () {
+    axios.get ('/api/inventory').then (res => {
+      this.setState ({
+        inventory: res.data
+      })
+    })
+    .catch (error => console.log (error))
+  }
+  
   render () {
     return (
       <div className="App">
         <Header/>
-        <Dashboard inventory={this.state.inventory}/>
+        <Dashboard inventory={this.state.inventory}
+        getInventory={this.getInventory}/>
         <Form/>
       </div>
     )

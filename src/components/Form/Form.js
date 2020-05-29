@@ -1,24 +1,23 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class Form extends Component {
     constructor () {
         super ()
         this.state = {
-            imageURL: '',
-            productName: '',
-            price: 0
+
         }
     }
     
-    handleImageURL (e) {
+    handleImg (e) {
         this.setState ({
-            imageURL: e.target.value
+            img: e.target.value
         })
     }
 
-    handleProductName (e) {
+    handleName (e) {
         this.setState ({
-            productName: e.target.value
+            name: e.target.value
         })
     }
 
@@ -30,20 +29,31 @@ class Form extends Component {
     
     clearInputs () {
         this.setState ({
-            imageURL: this.state.imageURL,
-            productName: this.state.productName,
-            price: this.state.price
+            name: this.state.productName,
+            price: this.state.price,
+            img: this.state.imageURL,
         })
     }
+
+    // createProduct (name, price, img) {
+    //     const body = {id, name, price, img}
+    //     axios.post ('/api/inventory', body)
+    //     .then ((res) => {
+    //         this.setState ({
+    //             collection: res.data
+    //         })
+    //     })
+    //     .catch (error => console.log (error))
+    // }
 
     render () {
         return (
             <>
             <div className='form-box'>
                 <h3>Image URL:</h3>
-                <input onChange = {e => this.handleImageURL (e)}></input>
+                <input onChange = {e => this.handleImg (e)}></input>
                 <h3>Product Name:</h3>
-                <input onChange = {e => this.handleProductName (e)}></input>
+                <input onChange = {e => this.handleName (e)}></input>
                 <h3>Price:</h3>
                 <input onChange = {e => this.handlePrice (e)}></input>
                 <div className='button-box'>
