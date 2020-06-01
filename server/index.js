@@ -1,8 +1,8 @@
 require ('dotenv').config ();
 const express = require ('express'),
-massive = require ('massive'),
-app = express (),
-{SERVER_PORT, CONNECTION_STRING} = process.env;
+    massive = require ('massive'),
+    app = express (),
+    {SERVER_PORT, CONNECTION_STRING} = process.env;
 const ctrl = require ('./controller')
 
 app.use (express.json ())

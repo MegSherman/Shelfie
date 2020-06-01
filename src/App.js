@@ -9,39 +9,24 @@ class App extends Component {
   constructor () {
     super()
     this.state = {
-      inventory: [
-        {
-          name: 'leather journal',
-          price: 30,
-          img: 'https://images-na.ssl-images-amazon.com/images/I/91KNwuvtHyL._AC_SL1500_.jpg'
-        },
-        {
-          name: 'fountain pen',
-          price: 25,
-          img: 'https://shop.r10s.jp/hunnyhunt/cabinet/sailor/s117new_2.jpg'
-        },
-        {
-          name: 'inkwell',
-          price: 15,
-          img: 'https://cdn.shopify.com/s/files/1/0130/8502/products/clm39_600x.jpg?v=1571438566'
-        }
-      ]
+      inventory: []
     }
     this.getInventory = this.getInventory.bind(this)
   }
   
-  // componentDidMount () {
-  //   this.getIventory ()
-  // }
-
-  getInventory () {
+  componentDidMount () {
     axios.get ('/api/inventory').then (res => {
+      console.log (res.data)
       this.setState ({
         inventory: res.data
       })
     })
     .catch (error => console.log (error))
+    // this.getInventory ()
   }
+
+  getInventory () {}
+
   
   render () {
     return (

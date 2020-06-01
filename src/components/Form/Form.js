@@ -5,7 +5,9 @@ class Form extends Component {
     constructor () {
         super ()
         this.state = {
-
+            name: '',
+            price: 0,
+            img: ''
         }
     }
     
@@ -29,9 +31,9 @@ class Form extends Component {
     
     clearInputs () {
         this.setState ({
-            name: this.state.productName,
-            price: this.state.price,
-            img: this.state.imageURL,
+            name: '',
+            price: '',
+            img: '',
         })
     }
 
